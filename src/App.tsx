@@ -7,6 +7,7 @@ import Dropzone from './components/Dropzone/Dropzone';
 import MessageViewer from './components/MessageViewer/MessageViewer';
 import Sidebar from './components/Sidebar/Sidebar';
 import * as S from './style';
+import raw from './chat.txt';
 
 import exampleChat from './assets/whatsapp-chat-parser-example.zip';
 
@@ -45,6 +46,12 @@ function App() {
       document.removeEventListener('keydown', keyHandler);
       document.removeEventListener('keyup', keyHandler);
     };
+
+     fetch(raw)
+      .then(r => r.blob())
+      .then(text => {
+        processFile(text);
+      });
   }, []);
 
   return (
